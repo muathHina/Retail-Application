@@ -8,12 +8,18 @@ class Login extends CI_Controller
 		$this->load->model('login_model');
 	}
 	
+	/* load the login page */
 	function index()
 	{
 		$data['content'] = 'login_view';
+		$data['title'] = 'Employee Login';
 		$this->load->view('main/template', $data);
 	}
-	
+	/*
+	 * validate the login details passed from the login Form
+	 * if details correct continue to home page, else redirect
+	 * to login page to enter details again.
+	 */
 	function validateLogin()
 	{
 		$empID = $this->input->post('employeeID');
@@ -37,26 +43,32 @@ class Login extends CI_Controller
 	}
 	
 	/*
-	 * New employees will need to enter their employee ID which
-	 * is given to them and their DOB, and then choose their own
-	 * password. If employee ID and DOB match the system will register
-	 * them by updating their password.
+	 * will load the registeration form
 	 */
 	function register()
 	{
 		$data['content'] = 'register_view';
+		$data['title'] = 'Register Employee';
 		$this->load->view('main/template', $data);
 	}
 	
-	function validateRegisteration()
+	/*
+	 * 1- get empID, dob and password.
+	 * 2- verrify that the empID and DOB are correct.
+	 * 3- check the password field is empty for new users.
+	 * 4- if all above is correct then password field is 
+	 * set and that completes registeration.
+	 */
+	function completeRegisteration()
 	{
 		$empID = $this->input->post('employeeID');
-		$pass = $this->input->post('dob');
-		$result = $this->login_model->verifyRegisteration($empID, $pass);
-		
-		if($result)
+		$dob = $this->input->post('dob');
+		$pass = $this->input->post('password');
+		$result = $this->login_model->verifyRegisteration($empID, $dob);
+	
+		if($result && passwordIsEmpty($empID))
 		{
-			
+			$this->login_model->setPassword($empID, $pass);
 		}
 	}
 }

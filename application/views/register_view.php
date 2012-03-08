@@ -3,7 +3,7 @@
 	<legend>Your information</legend>
 <label for="employeeID">Employee ID:</label>
 	<?php
-	echo form_open('login/validateRegisteration');
+	echo form_open('login/completeRegisteration');
 	echo form_input('employeeID');?>
 	<label for="dob">Date of Birth:</label>
 	<?php echo form_input('dob', 'e.g.1984-05-23', 'onClick=this.value="" ');?>
