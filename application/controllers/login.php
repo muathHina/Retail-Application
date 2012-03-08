@@ -15,6 +15,22 @@ class Login extends CI_Controller
 		$data['title'] = 'Employee Login';
 		$this->load->view('main/template', $data);
 	}
+	
+	function validateInput()
+	{
+		$this->form_validation->set_rules('employeeID', 'Username', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('password', 'Username', 'trim|required|xss_clean');
+		
+		if($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('login_view');
+		}
+		else
+		{
+			redirect('home', 'refresh');
+		}
+	}
+	
 	/*
 	 * validate the login details passed from the login Form
 	 * if details correct continue to home page, else redirect
@@ -42,34 +58,6 @@ class Login extends CI_Controller
 		}
 	}
 	
-	/*
-	 * will load the registeration form
-	 */
-	function register()
-	{
-		$data['content'] = 'register_view';
-		$data['title'] = 'Register Employee';
-		$this->load->view('main/template', $data);
-	}
 	
-	/*
-	 * 1- get empID, dob and password.
-	 * 2- verrify that the empID and DOB are correct.
-	 * 3- check the password field is empty for new users.
-	 * 4- if all above is correct then password field is 
-	 * set and that completes registeration.
-	 */
-	function completeRegisteration()
-	{
-		$empID = $this->input->post('employeeID');
-		$dob = $this->input->post('dob');
-		$pass = $this->input->post('password');
-		$result = $this->login_model->verifyRegisteration($empID, $dob);
-	
-		if($result && passwordIsEmpty($empID))
-		{
-			$this->login_model->setPassword($empID, $pass);
-		}
-	}
 }
 ?>

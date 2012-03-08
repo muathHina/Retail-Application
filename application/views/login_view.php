@@ -6,6 +6,6 @@
 	<?php echo form_input('employeeID', 'Employee ID', 'onClick=this.value="" ');?>
 	<?php echo form_password('password', 'Password', 'onClick=this.value="" ');?>
 	<?php echo form_submit('submit', 'Login');?>
-	<?php echo anchor('login/register', 'Register');?>
+	<?php echo anchor('register', 'Register');?>
 	<?php echo form_close();?>
 </div>

@@ -22,35 +22,5 @@ class Login_model extends CI_Model {
 		if($query -> num_rows == 1) return true;
 		else return false;
 	}
-	
-	function verifyRegisteration($empID, $dob)
-	{
-		$query = $this->db->get_where('employee', array('emp_id' => $empID, 'dob' => $dob));
-		if($query -> num_rows == 1) return true;
-		else return false;
-	}
-	
-	/*
-	 * will set a password for the specified employee ID
-	 */
-	function setPassword($empID, $pass)
-	{
-		$data = array('password' => $pass);
-		$this->db->where('emp_id', $empID);
-		$this->db->update('employee', $data);
-	}
-	
-	/*
-	 * checks if password field is empty, not set.
-	 * new users will complete registeration by
-	 * setting their password. if password not 
-	 * empty then the user is already registered. 
-	 */
-	function passwordIsEmpty($empID)
-	{
-		$query = $this->db->get_where('employee', array('emp_id' => $empID, 'password' => ''));
-		if($query -> num_rows == 1) return true;
-		else return false;
-	}
 }
 ?> 
