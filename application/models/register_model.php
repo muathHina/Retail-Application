@@ -12,9 +12,9 @@ class Register_model extends CI_Model{
 	 * one stored in the database and return true if so, else
 	 * false.
 	 */
-	function isEmplyee($empID, $dob)
+	function isEmployee($empID, $fname, $lname)
 	{
-		$query = $this->db->get_where('employee', array('emp_id' => $empID, 'dob' => $dob));
+		$query = $this->db->get_where('employee', array('emp_id' => $empID, 'fname' => $fname, 'lname' => $lname));
 		if($query -> num_rows == 1) return true;
 		else return false;
 	}
@@ -24,7 +24,7 @@ class Register_model extends CI_Model{
 	 */
 	function setPassword($empID, $pass)
 	{
-		$data = array('password' => $pass);
+		$data = array('password' => MD5($pass));
 		$this->db->where('emp_id', $empID);
 		$this->db->update('employee', $data);
 	}

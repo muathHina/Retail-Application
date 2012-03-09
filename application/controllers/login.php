@@ -18,17 +18,13 @@ class Login extends CI_Controller
 	
 	function validateInput()
 	{
-		$this->form_validation->set_rules('employeeID', 'Username', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('password', 'Username', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('employeeID', 'Employee ID', 'trim|required|xss_clean|numeric');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('check_details', '', 'callback_validateLogin'); // checks login details at this stage
+		$this->form_validation->set_error_delimiters('<p id="error">', '</p>');
 		
-		if($this->form_validation->run() == FALSE)
-		{
-			$this->load->view('login_view');
-		}
-		else
-		{
-			redirect('home', 'refresh');
-		}
+		if($this->form_validation->run() == FALSE) $this->index();
+		else redirect('home', 'refresh');
 	}
 	
 	/*
@@ -50,12 +46,14 @@ class Login extends CI_Controller
 				'date'	=> date("Y, m, d"),
 				'time'	=> date("H:i:s"));
 			$this->session->set_userdata($session_data);
-			redirect('home');
+			return true;
 		}
-		else
+		else if(($empID != '') && ($pass != ''))
 		{
-			$this->index();
+			$this->form_validation->set_message('validateLogin', 'Invalid username or password');	
 		}
+		else $this->form_validation->set_message('validateLogin', ''); // clear message
+		return false;
 	}
 	
 	
