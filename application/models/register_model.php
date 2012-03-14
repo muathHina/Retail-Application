@@ -7,39 +7,41 @@ class Register_model extends CI_Model{
 		parent::__construct();
 	}
 	
-	/*
-	 * checks if the employee id and date of birth macthes the
-	 * one stored in the database and return true if so, else
-	 * false.
+	/**
+	 * 
+	 * @access	public
+	 * @param	string
+	 * @return	boolean
 	 */
-	function isEmployee($empID, $fname, $lname)
+	function is_employee($empID, $fname, $lname)
 	{
 		$query = $this->db->get_where('employee', array('emp_id' => $empID, 'fname' => $fname, 'lname' => $lname));
-		if($query -> num_rows == 1) return true;
-		else return false;
+		return $query -> num_rows == 1;
 	}
 	
-	/*
-	 * this will set a password for the specified employee  id
+	/**
+	 * 
+	 * @access	public
+	 * @param	string
+	 * @return	boolean
 	 */
-	function setPassword($empID, $pass)
+	function set_password($empID, $pass)
 	{
 		$data = array('password' => MD5($pass));
 		$this->db->where('emp_id', $empID);
 		$this->db->update('employee', $data);
 	}
 	
-	/*
-	 * checks if password field in the database for the employee id specified
-	 * is empty. New users will complete registeration by setting their 
-	 * password and if the password field is not empty then the user is 
-	 * already registered thus will return false
+	/**
+	 * 
+	 * @access	public
+	 * @param	string
+	 * @return	boolean
 	 */
-	function empNotRegistered($empID)
+	function employee_registered($empID)
 	{
 		$query = $this->db->get_where('employee', array('emp_id' => $empID, 'password' => ''));
-		if($query -> num_rows == 1) return true;
-		else return false;
+		return $query->num_rows == 1;
 	}
 	
 }

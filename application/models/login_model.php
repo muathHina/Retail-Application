@@ -7,20 +7,28 @@ class Login_model extends CI_Model {
 		parent::__construct();
 	}
 	
-	/* 
-	 * check the login details against the database. return
-	 * true if details are correct, else false.
+	/**
+	 * 
+	 * @access	public
+	 * @param	string
+	 * @return	boolean
 	 */
-	function verifyLogin($empID, $pass)
+	function verify_login($empID, $pass)
 	{
-		$this->db->select('emp_id, dep_id, password');
-		$this->db->from('employee');
-		$this->db->where('emp_id', $empID);
-		$this->db->where('password', MD5($pass));  
-		
+		$this->db->SELECT('emp_id, dep_id, password');
+		$this->db->FROM('employee');
+		$this->db->WHERE('emp_id', $empID);
+		$this->db->WHERE('password', MD5($pass)); 
+			
 		$query = $this->db->get();
-		if($query -> num_rows == 1) return true;
-		else return false;
+		if($query->num_rows == 1)
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
 }
 ?> 
