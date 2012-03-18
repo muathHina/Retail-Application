@@ -1,20 +1,38 @@
- <?php 
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+session_start(); //call PHP session object
  
- class Home extends CI_Controller {
+class Home extends CI_Controller {
  	
- 	function __construct(){
+	function __construct()
+	{
  		parent::__construct();
  	}
  	
  	function index()
  	{
- 		$data['title'] = 'Ximbar Home Page';
-		$data['nav'] = 'menu';
- 		$data['content'] = 'home_view';
-		
-		$this->load->view('main/template', $data);
- 	}
- }
- 
- 
- ?>
+ 		if($this->session->userdata('login_session'))
+ 		{
+ 			$session_data = $this->session->userdata('login_session');
+ 			$data['name'] = $session_data['name'];
+ 			$data['title'] = 'Ximbar Home Page';
+			$data['nav'] = 'menu';
+	 		$data['main'] = 'home_view';
+			$this->load->view('content/template', $data);
+ 		}
+ 		else
+ 		{
+ 			 //If no session, redirect to login page
+ 			 redirect('login', 'refresh');
+ 		}
+	}
+	
+	
+	function logout()
+	{
+		$this->session->unset_userdata('login_session');
+		session_destroy();
+		redirect('login', 'refresh');
+	}
+}
+?>

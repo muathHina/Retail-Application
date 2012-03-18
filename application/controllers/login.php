@@ -65,18 +65,20 @@ class Login extends CI_Controller
 	 */
 	function validate_login()
 	{
-		$empID = $this->input->post('employeeID');
+		$emp_id = $this->input->post('employeeID');
 		$pass = $this->input->post('password');
-		$query = $this->login_model->verify_login($empID, $pass);
+		$query = $this->login_model->verify_login($emp_id, $pass);
+		$name = $this->login_model->get_name($emp_id);
 		
 		if($query)
 		{
 			$session_data = array (
-				'EmployeeID' => $empID,
+				'employee_id' => $emp_id,
+				'name'	=> $name,
 				'logged_in' => TRUE,
 				'date'	=> date("Y, m, d"),
 				'time'	=> date("H:i:s"));
-			$this->session->set_userdata($session_data);
+			$this->session->set_userdata('login_session',$session_data);
 			return TRUE;
 		}
 		return FALSE;

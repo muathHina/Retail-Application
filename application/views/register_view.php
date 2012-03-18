@@ -2,6 +2,7 @@
 	<img src="<?php echo base_url(); ?>img/logo.gif" />
 	<h2>Register</h2>
 	<?php echo validation_errors(); ?>
+	<p class="error"><?php if(isset($error)) echo $error;?></p>
 	<?php echo form_open('register/validate_input');?>
 	<label for="employeeID">Employee ID:</label>
 	<?php echo form_input('employeeID');?>
