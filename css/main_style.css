@@ -1,0 +1,113 @@
+/*style for error messges*/
+.error
+{
+	color: #FF0000;
+	padding-left: 1em;
+	font-family: arial;
+	font-style: italic;
+}
+
+/* style for feedback messages*/
+.status
+{
+	color: #249800;
+	padding-left: 1em;
+	font-family: arial;
+	font-style: italic;
+	font-weight : bold;
+}
+
+/* style for the form box */
+.form_box
+{
+	float: left;
+	width: 440px;
+	background-color: #212121;
+	border: 2px solid #FFFFFF;
+	margin: 5px;
+	padding: 1em;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background-image: url(../img/2.png);
+	
+}
+
+/* style for the H1,H2 inside the form box*/
+.form_box > H1, H2
+{
+	margin: 5px 10px 5px 15px;
+	text-align: left;
+	color: #FF4F0B;
+	font-family: arial;
+}
+
+/*style for the input fields*/
+INPUT[type=text], INPUT[type=password]
+{
+	width: 300px;
+	margin: 0.5em auto;
+	border: 1px solid #FFFFFF;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 0.5em;
+}
+
+/*style for submit button and A link*/
+INPUT[type=submit], FORM A
+{
+	float: right;
+	border: none;
+	margin: 0.3em 0 0;
+	font-family: arial;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 6px 20px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	background-color: #585858;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+/*aligning the A link inside the form*/
+FORM A
+{
+	float: left;
+	padding: 6px;
+}
+
+/*change color on mouse over for submit and A link*/
+INPUT[type=submit]:hover, FORM A:hover
+{
+	background-color: #FF4F0B;
+}
+
+/*style for the label tag*/
+LABEL
+{
+	padding: 1em;
+	color: #FFFFFF;
+	font-family: arial;
+}
+
+.left{
+	overflow: hidden;
+}
+
+/*align label tag on the left side*/
+.left LABEL
+{
+	float: left;
+}
+
+/* align input tag on the right side*/
+.left INPUT
+{
+	float: right;
+}
+
+/* clear the style */
+.clear {
+   clear: both;
+}

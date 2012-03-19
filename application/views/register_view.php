@@ -15,7 +15,6 @@
 	<label for="password">Confirm password:</label>
 	<?php 
 		echo form_password('passwconf');
-		echo form_hidden('check_details', 'Check');
 		echo form_submit('submit', 'Register');
 		echo anchor('login', 'Back to Login');
 		echo form_close();?>

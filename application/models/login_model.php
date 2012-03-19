@@ -70,5 +70,13 @@ class Login_model extends CI_Model {
 			return 'JobType Unknow';
 		}
 	}
+	
+	function update_log($emp_id)
+	{
+		$data = array( 'date' => date("Y-m-d"),
+   						'time' => date("H:i:s"),
+   						'emp_id' => $emp_id);
+		$this->db->insert('systemlog', $data);
+	}
 }
 ?> 

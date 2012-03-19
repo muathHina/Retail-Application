@@ -11,10 +11,9 @@ class Home extends CI_Controller {
  	
  	function index()
  	{
- 		if($this->session->userdata('login_session'))
+ 		if($this->session->session_live())
  		{
- 			$session_data = $this->session->userdata('login_session');
- 			$data['name'] = $session_data['name'];
+ 			$data['name'] = $this->session->get_name();
  			$data['title'] = 'Ximbar Home Page';
 			$data['nav'] = 'menu';
 	 		$data['main'] = 'home_view';

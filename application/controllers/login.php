@@ -73,14 +73,15 @@ class Login extends CI_Controller
 		
 		if($query)
 		{
+			//date_default_timezone_set("GMT"); // timezone you want to use if you don't want the OS default timezone
 			$session_data = array (
 				'employee_id' => $emp_id,
 				'name'	=> $name,
 				'jobtype' => $jobtype,
-				'logged_in' => TRUE,
-				'date'	=> date("Y, m, d"),
-				'time'	=> date("H:i:s"));
+				'logged_in' => TRUE);
 			$this->session->set_userdata('login_session',$session_data);
+			//update log
+			$this->login_model->update_log($emp_id);
 			return TRUE;
 		}
 		return FALSE;

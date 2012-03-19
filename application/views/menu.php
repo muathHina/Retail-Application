@@ -2,7 +2,7 @@
 	<ul id="nav">
 	    <li><a href="#">Retail</a>
 	    	<ul>
-	            <li><a href="#">Add Employee</a></li>
+	            <li><?php echo anchor('add_emp', 'Add Employee');?></li>
 	            <li><a href="#">View Employee</a></li>
 	            <li><a href="#">Assign a Shift</a></li>
 	            <li><a href="#">View Shift</a></li>
