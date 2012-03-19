@@ -37,33 +37,30 @@ body
 #bottom_footer 
 {
 	height: 50px;
-	background-image: url(../img/2.png);
+	background-color: #585858;
 	
 }
 
 #main 
 {
-	margin: 20px 0 10px;
+	margin: 30px 20px 20px;
 }
 
 nav
 {
-	color: #fff;
-	padding: 0;
 	background-color: #585858;
 }
 
 #logout
 {
 	margin: 10px 0;
-	width: 20%;
 	float: right;
 }
 
 #logout a
 {
 	border: none;
-	margin: 0 2em;
+	margin: 0 1em;
 	font-family: arial;
 	text-decoration: none;
 	font-size: 12px;
@@ -79,4 +76,18 @@ nav
 #logout a:hover
 {
 	background-color: #FF4F0B;
+}
+
+.welcome
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: #0061a5;
+	border-right: 1px solid black;
+}
+
+.name
+{
+	font-size: 12px;
+	font-weight: normal;
 }

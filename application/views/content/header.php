@@ -36,13 +36,15 @@ $(document).ready(function () {
 	<header id="top_header">
 	<img src="<?php echo base_url(); ?>img/logo-small.gif" />
 		<div id="logout">
+		<span class="welcome"> Welcome
 		<?php 
 			if(isset($name))
 			{
-				echo $name;
+				echo '<span class="name">'.$name.'</span>';
 			} 
 		?>
-		| <?php echo anchor('home/logout', 'Logout');?>
+		</span>
+		<?php echo anchor('home/logout', 'Logout');?>
 		</div>
 	</header>
 	

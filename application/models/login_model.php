@@ -50,5 +50,25 @@ class Login_model extends CI_Model {
 			return 'Name Unknow';
 		}
 	}
+	
+	function get_jobtype($emp_id)
+	{
+		$this->db->SELECT('jobtype');
+		$this->db->FROM('employee');
+		$this->db->WHERE('emp_id', $emp_id);
+		$query = $this->db->get();
+		
+		if($query->num_rows == 1)
+		{
+			foreach($query->result() as $row) 
+			{
+				return ucfirst($row->jobtype);
+			}
+		}
+		else 
+		{
+			return 'JobType Unknow';
+		}
+	}
 }
 ?> 

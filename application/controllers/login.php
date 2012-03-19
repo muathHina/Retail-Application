@@ -69,12 +69,14 @@ class Login extends CI_Controller
 		$pass = $this->input->post('password');
 		$query = $this->login_model->verify_login($emp_id, $pass);
 		$name = $this->login_model->get_name($emp_id);
+		$jobtype = $this->login_model->get_jobtype($emp_id);
 		
 		if($query)
 		{
 			$session_data = array (
 				'employee_id' => $emp_id,
 				'name'	=> $name,
+				'jobtype' => $jobtype,
 				'logged_in' => TRUE,
 				'date'	=> date("Y, m, d"),
 				'time'	=> date("H:i:s"));
