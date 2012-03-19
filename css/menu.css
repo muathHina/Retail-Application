@@ -1,0 +1,83 @@
+
+.clear {clear:both}
+
+/* remove the list style */
+#nav {
+    margin:0; 
+    padding:0; 
+    list-style:none;
+}   
+#nav li 
+{
+	border-right:1px solid #fff;
+	float:left; 
+	display:block; 
+	width:100px; 
+	background:#585858;
+	position:relative;
+	z-index:500; 
+	margin:0 0px;
+}
+         
+#nav li a 
+{
+	display:block; 
+	padding:8px 5px 0 5px; 
+	font-weight:700;  
+	height:23px;
+	text-decoration:none; 
+	color:#fff; 
+	text-align:center; 
+	color:#fff;
+}
+ 
+#nav li a:hover 
+{
+	background: #FF4F0B;
+	color:#fff;
+}
+     
+    /* you can make a different style for default selected value */
+#nav a.selected 
+{
+	color:#f00;
+}
+     
+#nav ul 
+{
+	position:absolute; 
+	left:0; 
+	display:none; 
+	margin:0 0 0 -1px; 
+	padding:0; 
+	list-style:none;
+}
+         
+#nav ul li 
+{
+	width:100px; 
+    float:left; 
+    border-top:1px solid #fff;
+}
+         
+/* display block will make the link fill the whole area of LI */
+#nav ul a 
+{
+	display:block;  
+	height:15px;
+	padding: 8px 5px; 
+	color:#fff;
+}
+         
+#nav ul a:hover 
+{
+	text-decoration:underline;  
+}
+ 
+/* fix ie6 small issue */
+/* we should always avoid using hack like this */
+/* should put it into separate file : ) */
+*html #nav ul 
+{
+    margin:0 0 0 -2px;
+}

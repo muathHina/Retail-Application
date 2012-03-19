@@ -1,13 +1,35 @@
-<!--start navigation -->
-<div id="nav">
-	<nav>
-		<div class="pul"><a href="#">Contact</a></div>
-		<div class="pul"><a href="#">Blog</a></div>
-		<div class="pul"><a href="#">Client</a></div>
-		<div class="pul"><a href="#">About</a></div>
-	    <div class="pul"><a href="#">Home</a></div>
-	</nav>
-</div>
-<!--end navigation -->
-
-
+<nav>
+	<ul id="nav">
+	    <li><a href="#">Retail</a>
+	    	<ul>
+	            <li><a href="#">Add Employee</a></li>
+	            <li><a href="#">View Employee</a></li>
+	            <li><a href="#">Assign a Shift</a></li>
+	            <li><a href="#">View Shift</a></li>
+	        </ul>
+	        <div class="clear"></div>    
+	    </li>
+	    <li><a href="#">Employee</a>
+	        <ul>
+	            <li><a href="#">Personal Info</a></li>
+	            <li><a href="#">View Shift</a></li>
+	        </ul>
+	        <div class="clear"></div>
+	    </li>
+	    <li><a href="#">News</a>
+	    <ul>
+	        <li><a href="#">Read</a></li>
+	        <li><a href="#">Publish</a></li>
+	    </ul>         
+	        <div class="clear"></div>
+	    </li>
+	    <li><a href="#">Messages</a>
+		    <ul>
+		        <li><a href="#">Read</a></li>
+		        <li><a href="#">Compose</a></li>
+		    </ul> 
+		    	<div class="clear"></div>    
+	    </li>
+	</ul>
+	<div class="clear"></div>
+</nav>

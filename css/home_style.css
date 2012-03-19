@@ -8,52 +8,75 @@ body, html
 
 body
 {
-	font-size: 1em;
+	font-family:arial;
+	font-size: 12px;
 }
 
-#wrapper
-{
-	position: relative;
+/*center the layout*/
+#container
+{ 
 	width: 90%;
 	margin: 0 auto;
-	height: 100%;
-	background-color: grey;
-	
+	border-left: 1px solid black;
+	border-right: 1px solid black;
 }
 
 #top_header
 {
-	position: relative;
-	height: 5%;
-	background-color: #42637c;
+	margin: 0;
+	height: 100px;
+	background: #fff;;
+}
+
+#top_header img
+{
+	float: left;
+    margin: 5px;
 }
 
 #bottom_footer 
 {
-	position: relative;
-	height: 5%;
-	background-color: #42637c;
+	height: 50px;
+	background-image: url(../img/2.png);
+	
 }
 
 #main 
 {
-	background-color: orange;
+	margin: 20px 0 10px;
 }
 
-#nav
+nav
 {
-	
-	background-color: white;
+	color: #fff;
+	padding: 0;
+	background-color: #585858;
 }
 
 #logout
 {
+	margin: 10px 0;
 	width: 20%;
 	float: right;
-	background-color: #fff;
 }
 
-.pul
+#logout a
 {
-	padding: 10px 0 10px 10px;
+	border: none;
+	margin: 0 2em;
+	font-family: arial;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 6px 20px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	background-color: #585858;
+	color: #FFF;
+	cursor: pointer;
+}
+
+#logout a:hover
+{
+	background-color: #FF4F0B;
 }

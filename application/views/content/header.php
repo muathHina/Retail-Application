@@ -11,11 +11,30 @@
 	?>
 </title>
 <link rel="stylesheet" href="<?php echo base_url();?>css/home_style.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo base_url();?>css/menu.css" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url();?>js/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function () { 
+    
+    $('#nav li').hover(
+        function () {
+            //show its submenu
+            $('ul', this).slideDown(100);
+ 
+        }, 
+        function () {
+            //hide its submenu
+            $('ul', this).slideUp(100);         
+        }
+    );
+     
+});
+	</script>
 </head>
 <body>
-<div id="wrapper">
+<div id="container">
 	<header id="top_header">
-	
+	<img src="<?php echo base_url(); ?>img/logo-small.gif" />
 		<div id="logout">
 		<?php 
 			if(isset($name))
@@ -25,8 +44,5 @@
 		?>
 		| <?php echo anchor('home/logout', 'Logout');?>
 		</div>
-		
-	Header
-	
 	</header>
 	
