@@ -17,7 +17,9 @@
 		
 		<div class="left">
 		<?php echo form_label('Date of Birth:', 'dob');?>
-		<?php echo form_input('dob');?>
+		<?php echo $formdate->selectYear();?>
+		<?php echo $formdate->selectMonth();?>
+		<?php echo $formdate->selectDay();?>
 		</div>
 		
 		<div class="left">
@@ -63,22 +65,25 @@
 	
 		<div class="left">
 		<?php echo form_label('Job type:', 'jobtype');?>
-		<?php echo form_input('jobtype');?>
+		<?php echo form_dropdown('jobtype', $jobtype, 'Assistant');?>
 		</div>
 	
 		<div class="left">
 		<?php echo form_label('Department:', 'department');?>
-		<?php echo form_input('department');?>
+		<?php echo form_dropdown('department', $department);?>
 		</div>
 	
 		<div class="left">
 		<?php echo form_label('Date joined:', 'datejoined');?>
-		<?php echo form_input('datejoined');?>
+		<?php echo $formdate->selectYear();?>
+		<?php echo $formdate->selectMonth();?>
+		<?php echo $formdate->selectDay();?>
 		</div>
 		<?php 
 			echo form_submit('submit', 'Submit Information');
 			echo form_close();?>
 			<div class="clear"></div>
+			
 	</div>
 	
 	

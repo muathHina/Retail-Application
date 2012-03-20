@@ -42,7 +42,7 @@
 }
 
 /*style for the input fields*/
-INPUT[type=text], INPUT[type=password]
+INPUT[type=text], INPUT[type=password], SELECT
 {
 	width: 300px;
 	margin: 0.5em auto;
@@ -102,7 +102,7 @@ LABEL
 }
 
 /* align input tag on the right side*/
-.left INPUT
+.left INPUT, SELECT
 {
 	float: right;
 }
@@ -110,4 +110,15 @@ LABEL
 /* clear the style */
 .clear {
    clear: both;
+}
+
+SELECT[name=dob_day], SELECT[name=dob_month], SELECT[name=dob_year]
+{
+	margin: 2px 0 0 7px;
+	width: 100px;
+}
+
+SELECT[name=jobtype], SELECT[name=department]
+{
+	width: 300px;
 }
