@@ -119,8 +119,8 @@ class Add_emp extends CI_Controller{
 	
 	/**
 	 * Get the form data from the session object and pass it to the
-	 * database. The index function will unset the form data from 
-	 * the session object.
+	 * database. When calling the index function will unset the 
+	 * form data from the session object.
 	 * 
 	 * @access public
 	 */
@@ -132,12 +132,16 @@ class Add_emp extends CI_Controller{
 	}
 	
 	/**
+	 * This will load the form with the data entered by the user to be edited.
+	 * The data will first be retrieved from the session object and then passed
+	 * to the View where the data is extracted and populated in the correct input 
+	 * field depending on the input field name it was assigned to.
 	 * 
-	 * Enter description here ...
+	 * @access public
 	 */
 	function edit_employee()
 	{
-		$data['edit_data'] = $this->session->userdata('post_data'); //re-populate data for editing
+		$data['edit_data'] = $this->session->userdata('post_data'); //retrieve data and pass it to the form to re-populate input fields
 		$data['breadcrumb1'] = 'Retail';
 		$data['breadcrumb2'] = 'Add Employee';
 		$data['breadcrumb3'] = 'Edit Employee';
@@ -153,12 +157,10 @@ class Add_emp extends CI_Controller{
 	
 	/**
 	 * get all the data from the form and save it in 
-	 * an Array. day, month, year are saved individually
-	 * so on the screen it is displayed D-M-Y but
-	 * in the database will be posted reversed Y-M-D.
+	 * a session object. This will help to retrieve data
+	 * at later stage for editing
 	 * 
 	 * @access public
-	 * @return array
 	 */
 	function set_data_session()
 	{	//unset if exist, when we edit we need to unset and set the new data.

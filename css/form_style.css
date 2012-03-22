@@ -42,7 +42,7 @@
 }
 
 /*style for the input fields*/
-INPUT[type=text], INPUT[type=password], SELECT
+INPUT[type=text], INPUT[type=password], SELECT, TEXTAREA
 {
 	width: 300px;
 	margin: 0.5em auto;
@@ -102,7 +102,7 @@ LABEL
 }
 
 /* align input tag on the right side*/
-.left INPUT, SELECT
+.left INPUT, SELECT, TEXTAREA
 {
 	float: right;
 }
@@ -146,3 +146,62 @@ SELECT[name=jobtype], SELECT[name=department]
 {
 	margin: 10px 0 0 30px;
 }
+
+TEXTAREA
+{
+	min-height:400px;
+}
+
+/*
+Start of style for the news box 
+*/
+
+.news_box
+{
+	//position: relative;
+	float: left;
+	width: 500px;
+	background-color: #d3edff;
+	border: 2px solid #FFFFFF;
+	margin: 5px auto;
+	padding: 1em;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+.news_box > article
+{
+	float: left;
+	width: 455px;
+	background-color: #FFFFFF;
+	border: 1px solid #FFFFFF;
+	margin: 10px;
+	padding: 1em;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	
+}
+
+.news_box H1
+{
+	margin: 0;
+	font-size: 18px;
+	font-weight: bold;
+	color: #0061a5;
+}
+
+article .footer
+{
+	font-size: x-small;
+	display:inline;
+}
+
+article .snippet
+{
+	font-size: 14px;
+
+}
+
+/*
+End of style for news box 
+*/

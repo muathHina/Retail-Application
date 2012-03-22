@@ -18,8 +18,8 @@
 	    </li>
 	    <li><a href="#">News</a>
 	    <ul>
-	        <li><a href="#">Read</a></li>
-	        <li><a href="#">Publish</a></li>
+	        <li><?php echo anchor('news/news', 'Read');?></li>
+	        <li><?php echo anchor('news/news/form_news', 'Create');?></li>
 	    </ul>         
 	        <div class="clear"></div>
 	    </li>

@@ -52,7 +52,6 @@ class Add_emp_model extends CI_Model{
     }
     /**
      * This will add employee details to the database
-     * will return true if added successfully, else false.
      * 
      * @param array
      * @return boolean

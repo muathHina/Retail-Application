@@ -22,7 +22,11 @@ class Register extends CI_Controller{
 	}
 	
 	/**
-	 * 
+	 * This method will validate the input from the form and
+	 * make sure it correspond to the rules specified. If
+	 * validation is correct another local method is called
+	 * which is 'complete_registration' to get the input and
+	 * update the database.
 	 * 
 	 * @access	public
 	 */
@@ -50,7 +54,7 @@ class Register extends CI_Controller{
 	 * validate the login details passed from the login Form:
 	 * 1. if he is actually an employee
 	 * 2. has not been registered before (this is checked by the
-	 * password field, if its empty means he is not registered).
+	 * password field, if its empty, it means user is not registered).
 	 * If all above correct proceed and set the password in the
 	 * database and redirect user to homepage.
 	 * 
@@ -58,7 +62,6 @@ class Register extends CI_Controller{
 	 * again and output a suitable message.
 	 * 
 	 * @access	public
-	 * @return	boolean
 	 */
 	function complete_registration()
 	{	//form validation complete, but need to check employee id and password.

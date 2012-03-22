@@ -8,6 +8,9 @@ class Login_model extends CI_Model {
 	}
 	
 	/**
+	 * this will verify the login details entered by the user. if
+	 * details match database entries a TRUE is returned, else FALSE
+	 * is returned.
 	 * 
 	 * @access	public
 	 * @param	string
@@ -31,6 +34,14 @@ class Login_model extends CI_Model {
 		}
 	}
 	
+	/**
+	 * will get the name of the employee who has the a specific
+	 * id number which is passed as a parameter.
+	 * 
+	 * @access public
+	 * @param integer
+	 * @return string
+	 */
 	function get_name($emp_id)
 	{
 		$this->db->SELECT('fname, lname');
@@ -51,6 +62,15 @@ class Login_model extends CI_Model {
 		}
 	}
 	
+	/**
+	 * will get the job type of an employee who has a specific id
+	 * number which is passed as a parameter. job type is either
+	 * 'Assistant, 'Manager' or 'Admin'.
+	 * 
+	 * @access public
+	 * @param integer
+	 * @return string
+	 */
 	function get_jobtype($emp_id)
 	{
 		$this->db->SELECT('jobtype');
@@ -71,6 +91,14 @@ class Login_model extends CI_Model {
 		}
 	}
 	
+	/**
+	 * this method will update the log table in the database
+	 * everytime a user login to the system.
+	 * employee id, current date and time will be saved.
+	 * 
+	 * @access public
+	 * @param integer
+	 */
 	function update_log($emp_id)
 	{
 		$data = array( 'date' => date("Y-m-d"),
