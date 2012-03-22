@@ -1,124 +1,107 @@
-/*style for error messges*/
-.error
+body, html
 {
-	color: #FF0000;
-	padding-left: 1em;
-	font-family: arial;
-	font-style: italic;
+	height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-/* style for feedback messages*/
-.status
+body
 {
-	color: #249800;
-	padding-left: 1em;
-	font-family: arial;
-	font-style: italic;
-	font-weight : bold;
+	font-family:arial;
+	font-size: 12px;
 }
 
-/* style for the form box */
-.form_box
+/*center the layout*/
+#container
+{ 
+	width: 90%;
+	margin: 0 auto;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+
+#top_header
+{
+	margin: 0;
+	height: 100px;
+	background: #fff;;
+}
+
+#top_header img
 {
 	float: left;
-	width: 440px;
-	background-color: #212121;
-	border: 2px solid #FFFFFF;
-	margin: 5px;
-	padding: 1em;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	background-image: url(../img/2.png);
+    margin: 5px;
+}
+
+#bottom_footer 
+{
+	color: #fff;
+	font-size: 16px;
+	padding-top: 20px;
+	text-align: center;
+	height: 50px;
+	background-color: #585858;
 	
 }
 
-/* style for the H1,H2 inside the form box*/
-.form_box > H1, H2
+#main 
 {
-	margin: 5px 10px 5px 15px;
-	text-align: left;
-	color: #FF4F0B;
-	font-family: arial;
+	width: 100%;
+	margin: 0 30px 30px;
+	
 }
 
-/*style for the input fields*/
-INPUT[type=text], INPUT[type=password], SELECT
+nav
 {
-	width: 300px;
-	margin: 0.5em auto;
-	border: 1px solid #FFFFFF;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	padding: 0.5em;
+	background-color: #585858;
 }
 
-/*style for submit button and A link*/
-INPUT[type=submit], FORM A
+#logout
 {
+	margin: 10px 0;
 	float: right;
+}
+
+#logout a
+{
 	border: none;
-	margin: 0.3em 0 0;
+	margin: 0 1em;
 	font-family: arial;
 	text-decoration: none;
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: bold;
 	padding: 6px 20px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	background-color: #585858;
-	color: #FFFFFF;
+	color: #FFF;
 	cursor: pointer;
 }
 
-/*aligning the A link inside the form*/
-FORM A
-{
-	float: left;
-	padding: 6px;
-}
-
-/*change color on mouse over for submit and A link*/
-INPUT[type=submit]:hover, FORM A:hover
+#logout a:hover
 {
 	background-color: #FF4F0B;
 }
 
-/*style for the label tag*/
-LABEL
+.welcome
 {
-	padding: 1em;
-	color: #FFFFFF;
-	font-family: arial;
+	font-size: 14px;
+	font-weight: bold;
+	color: #0061a5;
+	border-right: 1px solid black;
 }
 
-.left{
-	overflow: hidden;
-}
-
-/*align label tag on the left side*/
-.left LABEL
+.name
 {
-	float: left;
+	font-size: 12px;
+	font-weight: normal;
 }
 
-/* align input tag on the right side*/
-.left INPUT, SELECT
+#breadcrumb
 {
-	float: right;
-}
-
-/* clear the style */
-.clear {
-   clear: both;
-}
-
-SELECT[name=dob_day], SELECT[name=dob_month], SELECT[name=dob_year]
-{
-	margin: 2px 0 0 7px;
-	width: 100px;
-}
-
-SELECT[name=jobtype], SELECT[name=department]
-{
-	width: 300px;
+	margin: 40px 0 0 40px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #0061a5;
 }

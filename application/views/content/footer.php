@@ -1,7 +1,7 @@
 
 	<footer id="bottom_footer">
 	
-	Footer
+	About us | Contact us | Terms of use | &copy Copyright 2012 Ximbar Ltd.
 	
 	</footer>
 </div>

@@ -79,4 +79,4 @@ class Login_model extends CI_Model {
 		$this->db->insert('systemlog', $data);
 	}
 }
-?> 
+?>
