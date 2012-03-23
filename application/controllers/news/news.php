@@ -182,9 +182,24 @@ class News extends CI_Controller{
 	 * Enter description here ...
 	 * @param integer
 	 */
-	function read_news($id ='')
+	function read_article($n_id ='')
 	{
-		;
+		if($this->session->session_live())
+ 		{
+ 			$data['all_news'] = $this->news_model->read_article($n_id);
+ 			$data['breadcrumb1'] = 'News';
+			$data['breadcrumb2'] = 'Read';
+			$data['breadcrumb3'] = $data['all_news']['title'];
+ 			$data['name'] = $this->session->get_name();
+ 			$data['title'] = 'Read Article';
+	 		$data['main'] = 'news/read_article_view';
+			$this->load->view('content/template', $data);
+ 		}
+ 		else
+ 		{
+ 			 //If no session, redirect to login page
+ 			 redirect('login', 'refresh');
+ 		};
 	}
 }
 ?>

@@ -10,7 +10,7 @@
 		<p class="footer">Date: <time pubdate="pubdate"><?php echo $row['date_created']; ?></time>&nbsp;|&nbsp;</p>
 		<p class="footer">By: <?php echo $row['author']; ?></p>
 		</footer>
-		<div class="Alink"><?php echo anchor('news/news/read_news/'.$row['n_id'], 'Read');?></div>
+		<div class="Alink"><?php echo anchor('news/news/read_article/'.$row['n_id'], 'Read');?></div>
 	</article>
 <?php endforeach; ?>
 <div class="clear"></div>

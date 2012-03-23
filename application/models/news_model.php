@@ -124,11 +124,36 @@ class News_model extends CI_Model{
 	}
 	
 	/**
+	 * this will get an article from the database with the
+	 * specified id number 'n_id'.
 	 * 
+	 * @access public
+	 * @param integer
+	 * @return array
 	 */
-	function read_news($n_id)
+	function read_article($n_id)
 	{
+		$query = $this->db->get_where('news', array('n_id' => $n_id));
+		$data = array();
 		
+		if($query->num_rows == 1)
+		{
+			foreach($query->result() as $row) 
+			{
+				$name = $this->login_model->get_name($row->emp_id);
+				$data['n_id'] = $row->n_id;
+				$data['date_created'] = $row->date_created;
+				$data['title'] = $row->title;
+				$data['message'] = $row->message;
+				$data['no_of_views'] = $row->no_of_views;
+				$data['author'] = $name;
+			}
+			return $data;
+		}
+		else
+		{
+			return $data['error'] = 'cannot find article';
+		}
 	}
 	
 	/**

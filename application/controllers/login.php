@@ -51,7 +51,7 @@ class Login extends CI_Controller
 		}
 		else
 		{
-			redirect('home', 'refresh');
+			redirect('news/news', 'refresh');
 		}
 	}
 	
