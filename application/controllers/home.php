@@ -24,8 +24,8 @@ class Home extends CI_Controller {
  		if($this->session->session_live())
  		{
  			$data['name'] = $this->session->get_name();
- 			$data['title'] = 'Ximbar Home Page';
-	 		$data['main'] = 'news/read_news_view';
+ 			$data['page_title'] = 'Ximbar Home Page';
+	 		$data['main'] = 'news/read_all_articles_view';
 			$this->load->view('content/template', $data);
  		}
  		else

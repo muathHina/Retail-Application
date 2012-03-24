@@ -1,3 +1,9 @@
+body
+{
+	font-family:arial;
+	font-size: 12px;
+}
+
 /*style for error messges*/
 .error
 {
@@ -150,6 +156,7 @@ SELECT[name=jobtype], SELECT[name=department]
 TEXTAREA
 {
 	min-height:400px;
+	font-family: arial;
 }
 
 /*

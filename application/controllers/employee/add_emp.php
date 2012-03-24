@@ -38,7 +38,7 @@ class Add_emp extends CI_Controller{
 			$data['department'] = $this->add_emp_model->get_list_department();
 			$data['status'] = $status;
 			$data['name'] = $this->session->get_name();
-	 		$data['title'] = 'Add Employee';
+	 		$data['page_title'] = 'Add Employee';
 		 	$data['main'] = 'employee/add_emp_view';
 			$this->load->view('content/template', $data);
  		}
@@ -112,7 +112,7 @@ class Add_emp extends CI_Controller{
 		$data['breadcrumb2'] = 'Add Employee';
 		$data['breadcrumb3'] = 'Confirm Information';
  		$data['name'] = $this->session->get_name();
- 		$data['title'] = 'Add Employee Confirmation';
+ 		$data['page_title'] = 'Add Employee Confirmation';
 		$data['main'] = 'employee/confirm_emp_view';
 		$this->load->view('content/template', $data);
 	}
@@ -149,7 +149,7 @@ class Add_emp extends CI_Controller{
 		$data['jobtype'] = $this->add_emp_model->enum_select('employee' , 'jobtype');
 		$data['department'] = $this->add_emp_model->get_list_department();
 		$data['name'] = $this->session->get_name();
-	 	$data['title'] = 'Edit Employee';
+	 	$data['page_title'] = 'Edit Employee';
 		$data['main'] = 'employee/add_emp_view';
 		$this->load->view('content/template', $data);
 		

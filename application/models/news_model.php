@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class News_model extends CI_Model{
 	
@@ -17,9 +17,9 @@ class News_model extends CI_Model{
 	 * @param string
 	 * @param string
 	 */
-	function save_form_data_temp($n_title, $msg)
+	function save_form_data_temp($title, $msg)
 	{
-		$data = array( 'short_text' => $n_title,
+		$data = array( 'short_text' => $title,
    						'long_text1' => $msg,
 						'emp_id' => $this->session->get_emp_id());
 		$this->db->insert('session', $data);
@@ -43,14 +43,15 @@ class News_model extends CI_Model{
 		{
 			foreach($query->result() as $row) 
 			{
-				$data['n_title'] = $row->short_text;
+				$data['n_id'] = '';
+				$data['title'] = $row->short_text;
 				$data['message'] = $row->long_text1;
 				return $data;
 			}
 		}
 		else 
 		{
-			$data['n_title'] = 'title not found';
+			$data['title'] = 'title not found';
 			$data['message'] = 'message not found';
 			return $data;
 		}
@@ -96,7 +97,7 @@ class News_model extends CI_Model{
 	 * @param string
 	 * @param string
 	 */
-	function save_form_data_permanently()
+	function save_form_data_permanently($n_id = '')
 	{
 		//retrieve data from session table
 		$this->db->SELECT('short_text, long_text1');
@@ -108,17 +109,31 @@ class News_model extends CI_Model{
 		{
 			foreach($query->result() as $row) 
 			{
-				$data['n_title'] = $row->short_text;
+				$data['title'] = $row->short_text;
 				$data['message'] = $row->long_text1;
 			}
 		}
 		// save data permanently to news table
-		$news_data = array(
+		$new_data = array(
 						'date_created' => date("Y-m-d"),
-						'title' => $data['n_title'],
+						'title' => $data['title'],
 						'message' => $data['message'],
 						'emp_id' => $this->session->get_emp_id());
-		$this->db->insert('news', $news_data);
+		// update data permanently to news table
+		$update_data = array(
+						'title' => $data['title'],
+						'message' => $data['message']);
+		
+		if(empty($n_id))
+		{
+			$this->db->insert('news', $new_data);
+			
+		}
+		else
+		{
+			$this->db->where('n_id', $n_id);
+			$this->db->update('news', $update_data);
+		}
 		//empty session table
 		$this->empty_session_table();
 	}
@@ -157,12 +172,16 @@ class News_model extends CI_Model{
 	}
 	
 	/**
+	 * This will retrieve all articles saved in the database.
 	 * 
+	 * @access public
+	 * @return array
 	 */
-	function read_all_news()
+	function read_all_articles()
 	{	
 		$this->db->order_by('n_id', 'desc'); 
 		$query = $this->db->get('news');
+		$data = array();
 		foreach($query->result() as $row)
 		{	
 			$name = $this->login_model->get_name($row->emp_id);
@@ -176,6 +195,28 @@ class News_model extends CI_Model{
 		return $data;
 	}
 	
+	/**
+	 * this will delete an article with the specified id number.
+	 * 
+	 * @access public
+	 * @param string
+	 */
+	function delete_article($n_id = '')
+	{
+		$this->db->delete('news', array('n_id' => $n_id));
+		return ($this->article_exist($n_id) ? TRUE : FALSE);
+	}
+	
+	/**
+	 * This will check if an article with the specified id
+	 * number exist in the database.
+	 * 
+	 * @access public
+	 * @param string
+	 */
+	function article_exist($n_id = '')
+	{
+		return $this->db->get_where('news', array('n_id' => $n_id));
+	}
 }
-
 ?>

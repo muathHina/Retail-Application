@@ -16,7 +16,7 @@ class Register extends CI_Controller{
 	function index($error = '')
 	{
 		$data['content'] = 'register_view';
-		$data['title'] = 'Register Employee';
+		$data['page_title'] = 'Register Employee';
 		$data['error'] = $error;
 		$this->load->view('main/template', $data);
 	}
@@ -84,7 +84,7 @@ class Register extends CI_Controller{
 		else
 		{
 			$this->register_model->set_password($empID, $pass); // set the password
-			$data['title'] = 'Ximbar Retail System - Login';
+			$data['page_title'] = 'Ximbar Retail System - Login';
 			$data['status'] = 'Registeration Complete, You can Login now';
 			$data['content'] = 'login_view';
 			$this->load->view('main/template', $data);

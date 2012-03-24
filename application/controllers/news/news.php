@@ -15,16 +15,18 @@ class News extends CI_Controller{
 	 * 
 	 * @access public
 	 */
-	function index()
+	function index($status = '', $error = '')
 	{
 		if($this->session->session_live())
  		{
- 			$data['all_news'] = $this->news_model->read_all_news();
+ 			$this->news_model->empty_session_table(); // new start
+ 			$data['all_articles'] = $this->news_model->read_all_articles();
+ 			$data['status'] = $status;
  			$data['breadcrumb1'] = 'News';
-			$data['breadcrumb2'] = 'Read';
+			$data['breadcrumb2'] = 'Read Articles';
  			$data['name'] = $this->session->get_name();
- 			$data['title'] = 'Read News';
-	 		$data['main'] = 'news/read_news_view';
+ 			$data['page_title'] = 'Read News';
+	 		$data['main'] = 'news/read_all_articles_view';
 			$this->load->view('content/template', $data);
  		}
  		else
@@ -47,12 +49,12 @@ class News extends CI_Controller{
  		{
  			$this->news_model->empty_session_table(); // new start
  			$data['breadcrumb1'] = 'News';
-			$data['breadcrumb2'] = 'Create';
+			$data['breadcrumb2'] = 'Create Article';
 			$data['error'] = $error;
  			$data['status'] = $status;
 			$data['name'] = $this->session->get_name();
- 			$data['title'] = 'Create News';
-	 		$data['main'] = 'news/create_news_view';
+ 			$data['page_title'] = 'Create Article';
+	 		$data['main'] = 'news/create_edit_article_view';
 			$this->load->view('content/template', $data);
  		}
  		else
@@ -69,17 +71,17 @@ class News extends CI_Controller{
 	 * 
 	 * @access public
 	 */
-	function validate_input()
+	function validate_input($n_id = '')
 	{ 	          	
-		$this->form_validation->set_rules('n_title', 'title', 'trim|required|alpha_dash_space|max_length[80]');
+		$this->form_validation->set_rules('title', 'title', 'trim|required|alpha_dash_space|max_length[80]');
 		$this->form_validation->set_rules('message', 'message', 'trim|required');
 		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 		
 		if($this->form_validation->run() == FALSE)
-		{	// if form data has been entered then we are in the stage of editing the data
+		{	// if form data has been temporary saved then we are in the stage of editing the data
 			if($this->news_model->form_data_exist())
 			{
-				$this->edit_news();
+				$this->edit_temp_article();
 			}
 			else
 			{
@@ -89,7 +91,7 @@ class News extends CI_Controller{
 		else
 		{
 			$this->save_data_temp();
-			$this->confirm_info();
+			$this->confirm_info($n_id);
 		}
 	}
 	
@@ -102,59 +104,41 @@ class News extends CI_Controller{
 	 * 
 	 * @access public
 	 */
-	function confirm_info()
+	function confirm_info($n_id = '')
 	{	// retrieve news data from the session table
 		$n_data = $this->news_model->get_form_data_temp();
 		// pass all data to the View
-		$data['n_title'] = $n_data['n_title'];
+		$data['n_id'] = $n_id;
+		$data['title'] = $n_data['title'];
 		$data['message'] = $n_data['message'];
 		
 		$data['breadcrumb1'] = 'News';
-		$data['breadcrumb2'] = 'Create';
-		$data['breadcrumb3'] = 'Confirm Information';
+		$data['breadcrumb2'] = 'Create Article';
+		$data['breadcrumb3'] = 'Confirm';
  		$data['name'] = $this->session->get_name();
- 		$data['title'] = 'News - confirm information';
-		$data['main'] = 'news/confirm_news_view';
+ 		$data['page_title'] = 'Article - confirm information';
+		$data['main'] = 'news/confirm_article_view';
 		$this->load->view('content/template', $data);
 	}
 	
 	/**
-	 * setup the edit page for the news data entered previously. News
-	 * data will be retrieved from database and passed to the View.
+	 * this will get all the data from the news form and save it 
+	 * temporary in the database to be confirmed later. This will 
+	 * help to retrieve data if needed for editing before permanently
+	 * saving it to the database.
 	 * 
-	 * @access public
-	 */
-	function edit_news()
-	{
-		$data['edit_data'] = $this->news_model->get_form_data_temp(); //retrieve data and pass it to the view
-		$data['breadcrumb1'] = 'News';
-		$data['breadcrumb2'] = 'Create';
-		$data['breadcrumb3'] = 'Edit';
-		$data['name'] = $this->session->get_name();
-	 	$data['title'] = 'Edit News';
-		$data['main'] = 'news/create_news_view';
-		$this->load->view('content/template', $data);
-		
-	}
-	
-	/**
-	 * get all the data from the news form and save it 
-	 * temporary in the database to confirm it later, and
-	 * save permanently in the database.As well this will 
-	 * help to retrieve data at later stage for editing.
-	 * 
-	 * The table session in the db is a temporary place where
-	 * data can be stored and retrieved, and deleted once
-	 * processing is finished.
+	 * The table session in the db is a temporary place where data 
+	 * can be stored and retrieved, and deleted once processing is 
+	 * finished.
 	 * 
 	 * @access public
 	 */
 	function save_data_temp()
 	{
 		$this->news_model->empty_session_table(); //empty table, new start.
-		$n_title = $this->input->post('n_title');
+		$title = $this->input->post('title');
 		$msg = $this->input->post('message');
-		$this->news_model->save_form_data_temp($n_title, $msg);
+		$this->news_model->save_form_data_temp($title, $msg);
 	}
 	
 	/**
@@ -162,36 +146,29 @@ class News extends CI_Controller{
 	 * 
 	 * @access public
 	 */
-	function publish_news()
+	function publish_article($n_id = '')
 	{
-		$this->news_model->save_form_data_permanently();
-		$this->form_news('News has been published successfully.', '');
+		$this->news_model->save_form_data_permanently($n_id);
+		$this->index();
 	}
 	
 	/**
+	 * this will retrieve an article data from the database and 
+	 * pass it to the specified view for reading.
 	 * 
-	 */
-	function read_all_news()
-	{
-		return $this->news_model->read_all_news();
-		
-	}
-	
-	/**
-	 * 
-	 * Enter description here ...
+	 * @access public
 	 * @param integer
 	 */
 	function read_article($n_id ='')
 	{
 		if($this->session->session_live())
  		{
- 			$data['all_news'] = $this->news_model->read_article($n_id);
+ 			$data['article'] = $this->news_model->read_article($n_id);
  			$data['breadcrumb1'] = 'News';
-			$data['breadcrumb2'] = 'Read';
-			$data['breadcrumb3'] = $data['all_news']['title'];
+			$data['breadcrumb2'] = 'Read Article';
+			$data['breadcrumb3'] = $data['article']['title'];
  			$data['name'] = $this->session->get_name();
- 			$data['title'] = 'Read Article';
+ 			$data['page_title'] = 'Read Article';
 	 		$data['main'] = 'news/read_article_view';
 			$this->load->view('content/template', $data);
  		}
@@ -201,5 +178,74 @@ class News extends CI_Controller{
  			 redirect('login', 'refresh');
  		};
 	}
+	
+	/**
+	 * The method will edit an article. There are two conditions:
+	 * 
+	 * 1- if the article exist in the databse(permanent) and the session
+	 * table contain new data, then we pass the new data in the session 
+	 * table with the existing article id number from news table. So after
+	 * editing we update the existing article with the new data.
+	 * 
+	 * 2- else if no session data exist the method will pass the the 
+	 * existing article data for the specified view for editing.
+	 * 
+	 * @access public
+	 * @param integer
+	 */
+	function edit_article($n_id ='')
+	{
+		if($this->news_model->article_exist($n_id) && $this->news_model->form_data_exist())
+		{
+			$data['edit_data'] = $this->news_model->get_form_data_temp();
+			$data['edit_data']['n_id'] = $n_id;
+		}
+		else {
+			$data['edit_data'] = $this->news_model->read_article($n_id);
+		}
+		$data['breadcrumb1'] = 'News'; //
+		$data['breadcrumb2'] = 'Edit Article'; //
+		$data['name'] = $this->session->get_name(); //
+	 	$data['page_title'] = 'Edit Article'; //
+		$data['main'] = 'news/create_edit_article_view';
+		$this->load->view('content/template', $data);	
+	}
+	
+	/**
+	 * this will delete an article permanently from the database.
+	 * The article id number is specified in the parameter.
+	 * 
+	 * @param string
+	 */
+	function delete_article($n_id ='')
+	{
+		$result = $this->news_model->delete_article($n_id);
+		if($result)
+		{
+			$this->index('Article deleted successfully.', '');
+		}
+		else
+		{
+			$this->index('', 'An error occurred. Article not deleted');
+		}
+	}
+	
+	/**
+	 * this will delete an article permanently from the database.
+	 * The article id number is specified in the parameter.
+	 * 
+	 * @param string
+	 */
+	function confirm_delete_article($n_id ='')
+	{	
+		$data['article'] = $this->news_model->read_article($n_id);
+ 		$data['breadcrumb1'] = 'News';
+		$data['breadcrumb2'] = 'Delete Article';
+		$data['breadcrumb3'] = $data['article']['title'];
+ 		$data['name'] = $this->session->get_name();
+ 		$data['page_title'] = 'Delete Article';
+	 	$data['main'] = 'news/confirm_delete_article_view';
+		$this->load->view('content/template', $data);
+	}	
 }
 ?>

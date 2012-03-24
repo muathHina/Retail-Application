@@ -4,9 +4,9 @@
 <meta charset=utf-8>
 <title>
 	<?php 
-		if(isset($title))
+		if(isset($page_title))
 		{
-			echo $title;
+			echo $page_title;
 		}
 	?>
 </title>

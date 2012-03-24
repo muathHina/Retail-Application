@@ -21,7 +21,7 @@ class Login extends CI_Controller
 	function index($error = '')
 	{
 		$data['content'] = 'login_view';
-		$data['title'] = 'Ximbar Retail System - Login';
+		$data['page_title'] = 'Ximbar Retail System - Login';
 		$data['error'] = $error;
 		$this->load->view('main/template', $data);
 	}
