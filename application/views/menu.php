@@ -25,8 +25,8 @@
 	    </li>
 	    <li><a href="#">Messages</a>
 		    <ul>
-		        <li><a href="#">Read</a></li>
-		        <li><a href="#">Compose</a></li>
+		        <li><?php echo anchor('messages/message', 'Read');?></li>
+		        <li><?php echo anchor('messages/message/compose_message', 'Compose');?></li>
 		    </ul> 
 		    	<div class="clear"></div>    
 	    </li>

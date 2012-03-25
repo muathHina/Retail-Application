@@ -50,6 +50,7 @@ class Add_emp_model extends CI_Model{
 			return $data;
 		}
     }
+    
     /**
      * This will add employee details to the database
      * 

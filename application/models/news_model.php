@@ -182,15 +182,27 @@ class News_model extends CI_Model{
 		$this->db->order_by('n_id', 'desc'); 
 		$query = $this->db->get('news');
 		$data = array();
-		foreach($query->result() as $row)
-		{	
-			$name = $this->login_model->get_name($row->emp_id);
-			$data[$row->n_id] = array(
-				'n_id' => $row->n_id,
-				'date_created' => $row->date_created,
-				'title' => $row->title,
-				'message' => $row->message,
-				'author' => $name);
+		if ($query->num_rows > 0)
+		{
+			foreach($query->result() as $row)
+			{	
+				$name = $this->login_model->get_name($row->emp_id);
+				$data[$row->n_id] = array(
+					'n_id' => $row->n_id,
+					'date_created' => $row->date_created,
+					'title' => $row->title,
+					'message' => substr($row->message, 0, 100).' ....', // return first 100 character
+					'author' => $name);
+			}
+		}
+		else 
+		{
+			$data[0] = array(
+					'n_id' => '',
+					'date_created' => date("Y-m-d"),
+					'title' => 'No articles found.',
+					'message' => '',
+					'author' => 'Admin');
 		}
 		return $data;
 	}

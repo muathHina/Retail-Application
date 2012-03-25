@@ -126,7 +126,7 @@ SELECT[name=dob_day], SELECT[name=dob_month], SELECT[name=dob_year]
 }
 
 /* adjusting the width for the jobtype and department drop down menu */
-SELECT[name=jobtype], SELECT[name=department]
+SELECT[name=jobtype], SELECT[name=department], SELECT[name=recipients]
 {
 	width: 313px;
 }
