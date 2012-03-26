@@ -43,6 +43,7 @@ class Messages_model extends CI_Model{
 					'from' => 'Admin',
 					'to' => '');
 		}
+		// count how many unread messages we got
 		return $data;
 	}
 	
@@ -66,6 +67,7 @@ class Messages_model extends CI_Model{
 				$data['from'] = $sender_name;
 				$data['to'] = $recipient_name;
 			}
+			$this->mark_message_as_read($msg_id);
 			return $data;
 		}
 		else
@@ -88,9 +90,11 @@ class Messages_model extends CI_Model{
 		
 		foreach ($query->result() as $row)
 		{
-			$data[''] = 'Select recipient ... ';
+			
 			$data[$row->emp_id] = $this->login_model->get_name($row->emp_id);
 		}
+		$data[''] = '.Select recipient ... ';
+		asort($data); //sort array low - high
 		return $data;
     }
     
@@ -124,6 +128,37 @@ class Messages_model extends CI_Model{
 	{
 		$this->db->delete('message', array('msg_id' => $msg_id));
 		//return ($this->article_exist($n_id) ? TRUE : FALSE);
+    }
+    
+    /**
+     * This will mark the message as read, meaning it has been 
+     * retrieved by the recipient for reading.
+     * 
+     * @access public
+     * @param int $msg_id
+     * 
+     */
+    function mark_message_as_read($msg_id = '')
+    {
+    	$data = array('read' => 'yes');
+		$this->db->where('msg_id', $msg_id);
+		$this->db->update('message', $data);
+    }
+    
+    /**
+     * will count how many messages has not been retrieved from the database,
+     * meaning they have 'no' value under 'read' column.
+     * 
+     * @access public
+     * @return array
+     * 
+     */
+    function count_unread_messages()
+    {
+    	$this->db->like('read', 'no');
+		$this->db->from('message');
+		$data['unread_messages'] = $this->db->count_all_results();
+		return $data;
     }
 }
 ?>

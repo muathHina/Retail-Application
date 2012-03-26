@@ -1,4 +1,3 @@
-
 <div id="login_register">
 	<img src="<?php echo base_url(); ?>img/logo.gif" />
 	<h2>Login</h2>

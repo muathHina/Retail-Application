@@ -1,7 +1,7 @@
 <div id="main">
 	<div class="form_box">
 	<?php echo validation_errors(); ?>
-	<h2>News Information</h2>
+	<h2>Article Information</h2>
 		<p class="status"><?php if(isset($status)) echo $status;?></p>
 		<p class="error"><?php if(isset($error)) echo $error;?></p>
 		<?php echo form_open('news/news/validate_input/'.(isset($edit_data['n_id']) ? $edit_data['n_id'] : ''));?>

@@ -51,7 +51,8 @@ class Add_emp extends CI_Controller{
 	
 	/**
 	 * validate the input data from the form
-	 * @return string
+	 * 
+	 * @access
 	 */
 	function validate_input()
 	{ 	          	

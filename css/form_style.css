@@ -27,7 +27,7 @@ body
 .form_box
 {
 	float: left;
-	width: 440px;
+	width: 460px;
 	background-color: #212121;
 	border: 2px solid #FFFFFF;
 	margin: 5px;
@@ -141,16 +141,17 @@ SELECT[name=jobtype], SELECT[name=department], SELECT[name=recipients]
 
 .data
 {
-	margin: 5px 0 5px 10px;
-	color: #994;
-	font-size: 16px;
-	font-weight: bold;
+	margin : 5px 0 5px 10px;
+	color : #fff;
+	font-size : 16px;
+	font-weight : bold;
+	font-style: italic;
 }
 
 /* override the margin for the buttons originally set in the form_box class*/
 .Alink A
 {
-	margin: 10px 0 0 30px;
+	margin: 5px 10px 0 10px;
 }
 
 TEXTAREA
@@ -212,3 +213,15 @@ article .snippet
 /*
 End of style for news box 
 */
+
+INPUT[disabled=disabled]
+{
+	background: #e4e4e4;
+	color: #000;
+}
+
+.note
+{
+	font-size: x-small;
+	color: #FFF;
+}

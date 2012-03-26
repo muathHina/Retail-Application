@@ -11,7 +11,7 @@
 	    </li>
 	    <li><a href="#">Employee</a>
 	        <ul>
-	            <li><a href="#">Personal Info</a></li>
+	            <li><?php echo anchor('employee/personal_info', 'Personal info');?></li>
 	            <li><a href="#">View Shift</a></li>
 	        </ul>
 	        <div class="clear"></div>

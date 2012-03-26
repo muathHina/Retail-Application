@@ -23,7 +23,6 @@ class News extends CI_Controller{
  			$data['all_articles'] = $this->news_model->read_all_articles();
  			$data['status'] = $status;
  			$data['breadcrumb1'] = 'News';
-			$data['breadcrumb2'] = 'Read Articles';
  			$data['name'] = $this->session->get_name();
  			$data['page_title'] = 'Read News';
 	 		$data['main'] = 'news/read_all_articles_view';
@@ -166,7 +165,6 @@ class News extends CI_Controller{
  			$data['article'] = $this->news_model->read_article($n_id);
  			$data['breadcrumb1'] = 'News';
 			$data['breadcrumb2'] = 'Read Article';
-			$data['breadcrumb3'] = $data['article']['title'];
  			$data['name'] = $this->session->get_name();
  			$data['page_title'] = 'Read Article';
 	 		$data['main'] = 'news/read_article_view';
